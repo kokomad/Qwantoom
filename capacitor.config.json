@@ -1,0 +1,7 @@
+{
+  "appId": "com.phantomx.launcher",
+  "appName": "PHANTOM X Launcher",
+  "webDir": "dist",
+  "android": { "backgroundColor": "#07040f" },
+  "plugins": { "StatusBar": { "style": "DARK", "backgroundColor": "#07040f", "overlaysWebView": false } }
+}
