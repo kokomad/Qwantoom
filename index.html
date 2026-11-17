@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#07040f">
+<title>PHANTOM X Launcher</title>
+<link rel="stylesheet" href="/src/style.css">
+</head>
+<body>
+<div id="root"><main id="stage">
+  <div id="art"></div>
+
+  <!-- Live widgets (drawn over the artwork, same neon-glass style) -->
+  <section class="w" id="wClock" data-box="25,85,480,310">
+    <button class="hs" data-act="alarms" aria-label="الساعة"></button>
+    <div class="time"><span id="tm">7:24</span><b id="ap">PM</b></div>
+    <div class="date"><span id="dt"></span><button class="cal" data-act="calendar" aria-label="التقويم">▦</button></div>
+  </section>
+  <section class="w" id="wWeather" data-box="562,90,820,425">
+    <button class="hs" data-act="weather" aria-label="الطقس"></button>
+    <div class="wi" id="wIcon">🌙</div><div class="wt" id="wTemp">--°C</div>
+    <div class="wd" id="wDesc">جارٍ التحميل</div><div class="wc">📍 <span id="wCity">عمّان</span></div>
+    <div class="wh"><span id="wHi">↑--°</span><span id="wLo">↓--°</span></div>
+  </section>
+  <section class="w" id="wQuote" data-box="25,335,300,545">
+    <button class="hs" data-act="quote" aria-label="العبارة"></button>
+    <span class="q">❝</span><p id="qText"></p><span class="heart">♡</span>
+  </section>
+  <section class="w" id="wTasks" data-box="25,768,400,1100">
+    <header><span class="chk">✓</span><strong>مهامي اليومية</strong><button id="addTask" aria-label="إضافة مهمة">+</button></header>
+    <div id="taskList"></div>
+    <div class="prog"><i id="progBar"></i></div><footer><span id="taskCount">0 / 0</span><span class="bars">▂▄▆█</span></footer>
+  </section>
+  <section class="w round" id="wBat" data-box="575,770,825,1030">
+    <button class="hs" data-act="battery" aria-label="البطارية"></button>
+    <svg viewBox="0 0 100 100"><defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#b46bff"/><stop offset="1" stop-color="#3dff8c"/></linearGradient></defs>
+    <circle cx="50" cy="50" r="44" fill="none" stroke="#2a1b45" stroke-width="7"/><circle id="ring" cx="50" cy="50" r="44" fill="none" stroke="url(#bg)" stroke-width="7" stroke-linecap="round" transform="rotate(-90 50 50)" stroke-dasharray="276.5" stroke-dashoffset="276.5"/></svg>
+    <div class="bc"><i id="bolt">⚡</i><b id="bPct">--%</b><small>متبقي</small><em id="bTime">--</em></div>
+  </section>
+  <section class="w pill" id="wSearch" data-box="205,1297,668,1380"><input id="q" type="search" enterkeyhint="search" placeholder="ابحث هنا..." autocomplete="off"></section>
+  <div id="tiles"></div>
+
+  <!-- Invisible tap zones over the painted artwork (quick tools, mic, Google, dock) -->
+  <button class="hs" data-box="567,1092,683,1180" data-act="storage" aria-label="تنظيف الهاتف"></button>
+  <button class="hs" data-box="692,1092,808,1180" data-act="boost" aria-label="تسريع الأداء"></button>
+  <button class="hs" data-box="567,1190,683,1275" data-act="privacy" aria-label="حماية الخصوصية"></button>
+  <button class="hs" data-box="692,1190,808,1275" data-act="cool" aria-label="تبريد الهاتف"></button>
+  <button class="hs" data-box="75,1290,195,1385" data-act="voice" aria-label="بحث صوتي"></button>
+  <button class="hs" data-box="672,1290,790,1385" data-act="search" aria-label="بحث Google"></button>
+  <button class="hs" data-box="675,1553,800,1690" data-act="drawer" aria-label="كل التطبيقات"></button>
+  <button class="hs" data-box="80,1735,190,1840" data-act="dial" aria-label="الهاتف"></button>
+  <button class="hs" data-box="200,1735,310,1840" data-act="sms" aria-label="الرسائل"></button>
+  <button class="hs" data-box="350,1730,520,1850" data-act="drawer" aria-label="كل التطبيقات"></button>
+  <button class="hs" data-box="535,1735,645,1840" data-act="music" aria-label="الموسيقى"></button>
+  <button class="hs" data-box="665,1735,775,1840" data-act="settings" aria-label="إعدادات PHANTOM X"></button>
+</main></div>
+
+<div id="toast" role="status"></div>
+<section id="drawer" hidden>
+  <header><strong id="drTitle">كل التطبيقات</strong><button data-close="drawer" aria-label="إغلاق">✕</button></header>
+  <input id="appFilter" type="search" placeholder="ابحث عن تطبيق..." autocomplete="off">
+  <div id="appList"></div>
+</section>
+<section id="menu" hidden><div class="card"><strong id="menuTitle"></strong>
+  <button data-m="open">فتح</button><button data-m="info">معلومات التطبيق</button><button data-m="del" class="danger">إلغاء التثبيت</button><button data-close="menu">إلغاء</button></div></section>
+<section id="sheet" hidden><div class="card big">
+  <header><strong>إعدادات PHANTOM X</strong><button data-close="sheet" aria-label="إغلاق">✕</button></header>
+  <div class="row"><span id="defState">...</span><button id="setDefault" class="primary">اجعله الشاشة الرئيسية</button></div>
+  <label>المدينة (للطقس)</label><div class="row"><input id="cityIn" placeholder="مثال: عمّان"><button id="cityGo">بحث</button></div><div id="cityRes"></div>
+  <label>العبارة اليومية</label><div class="row"><input id="quoteIn"><button id="quoteSave">حفظ</button></div>
+  <button id="resetSlots">إعادة ضبط تطبيقات الشاشة الرئيسية</button>
+  <small>اضغط مطولاً على أيقونة في الشاشة الرئيسية لتغييرها. اضغط مطولاً على مهمة لحذفها.</small>
+</div></section>
+<script type="module" src="/src/main.js"></script>
+</body>
+</html>
